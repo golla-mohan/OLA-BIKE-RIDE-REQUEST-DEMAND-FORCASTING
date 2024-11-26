@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        /* General body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white; /* Fallback color */
+            /*background-image: url('../static/css/night.jpg'); /* Path to your background image */
+            background-repeat: no-repeat;
+            background-size: cover; /* Ensures the image covers the entire viewport */
+            background-position: center; /* Centers the image */
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        /* Navigation bar styles */
+        .nav-bar {
+            background-color: black; /* Semi-transparent background */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .nav-bar .logo {
+            font-size: 70px;
+            color: #f0f0f0;
+            font-weight: bold;
+            justify-content: start;
+        }
+
+        .nav-bar .nav-links {
+            display: flex;
+            gap: 20px;
+            justify-content: space-evenly; /* Space between links */
+        }
+
+        .nav-bar a {
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-bar a:hover {
+            background-color: #4CAF50; /* Green on hover */
+        }
+
+        /* Main Content Section */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 120px; /* Space for the fixed navbar */
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        p {
+            font-size: 1.25em;
+            color: black;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        ul li {
+            margin-bottom: 15px;
+        }
+
+        ul li a {
+            color: black;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+
+        ul li a:hover {
+            color: #4CAF50; /* Change color on hover */
+        }
+
+        /* Highlight Specific Links */
+        ul li a.highlight {
+            background-color: rgba(0, 128, 0, 0.1); /* Light green background */
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        ul li a.highlight:hover {
+            background-color: #4CAF50; /* Green on hover */
+            color: white;
+        }
+
+
+
+        .carousel-container {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+            background-color: black; /* Background for contrast */
+        }
+
+        .carousel-track {
+            display: flex;
+            animation: scroll-left 15s linear infinite;
+        }
+
+        .carousel-track img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        /* Keyframes for smooth left-to-right animation */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* To loop images seamlessly */
+        .carousel-track img:last-child {
+            margin-right: 0;
+        }
+
+
+
+
+
+
+
+        /* Careers Section Styles */
+.careers-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.careers-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.careers-section p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.careers-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.career-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.career-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.career-card p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.career-card button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.career-card button:hover {
+    background-color: #45a049;
+}
+
+.career-card:hover {
+    transform: translateY(-5px);
+}
+
+
+
+
+
+        /* Footer Section Styles */
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            color: white;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-content, .footer-links {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-content h3, .footer-links h3 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .footer-content ul, .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-content li, .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-content a, .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .footer-content a:hover, .footer-links a:hover {
+            color: #4CAF50; /* Green on hover */
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            border-top: 1px solid #4CAF50;
+            padding-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-content, .footer-links {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="logo"><img src='../static/css/img.jpg' width="120" height="100">OLA</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#careers">Careers</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 id="home">Welcome to Ola Bike Ride Prediction</h1>
+        <p>Choose an option:</p>
+        <ul>
+            <li><a href="{{ url_for('predict_form') }}" class="highlight">Predict Weekly Ola Bike Rides</a></li>
+            <li><a href="{{ url_for('predict_ride_form') }}" class="highlight">Predict Ola Ride Price</a></li>
+        </ul>
+    </div>
+    <h2 style="text-align: center;"> Predict Weekly Ola Bike Rides</h2><br>
+    <p style="text-align: center;">The "Predict Weekly Ola Bike Rides" feature is designed to forecast the number of rides expected in<br> 
+                                   the upcoming week using historical data and trends. This predictive tool helps Ola optimize its operations<br>
+                                  by ensuring that bikes and drivers are appropriately allocated across various locations. By analyzing factors <br>
+                                  such as past ride data, weather conditions, and seasonal patterns, the feature provides accurate demand estimates.<br>
+
+                                This functionality is particularly beneficial for planning and resource management. It allows Ola to prepare for <br>
+                                high-demand periods, reduce wait times for customers, and manage surge pricing effectively. Additionally, it <br>
+                                contributes to efficient resource allocation, minimizing idle time for drivers and ensuring a seamless customer <br>
+                                experience. Overall, the feature supports operational efficiency while enhancing customer satisfaction.</p>
+    <h2 style="text-align: center;">Predict Ola Ride Price</h2><br>
+    <p style="text-align: center;">The "Predict Ola Ride Price" feature enables users to estimate the cost of their rides before booking. Using <br>
+                                   a combination of factors such as the trip's distance, duration, traffic conditions, time of day, and location<br>
+                                   -specific demand, this tool provides an accurate fare prediction. It leverages advanced algorithms and real-time <br>
+                                   data to ensure transparency and reliability in pricing.<bR> 
+
+                                  This feature helps users make informed decisions, plan their budgets, and avoid surprises regarding ride costs. It <br>
+                                  is especially useful during peak hours or in areas where dynamic pricing may apply. Additionally, it promotes trust<br>
+                                   by providing clarity on how fares are calculated, enhancing the overall user experience. By empowering riders with <br>
+                                   price insights, Ola continues to focus on convenience and customer satisfaction.
+        
+        
+                                   <div class="carousel-container">
+                                    <div class="carousel-track">
+                                        <!-- Add as many images as needed -->
+                                        <img src="../static/css/bike.jpg" alt="Bike Image">
+                                        <img src="../static/css/Uber.jpg" alt="Uber Image">
+                                        <img src="../static/css/night.jpg" alt="Night Image">
+                                        <img src="../static/css/hombike.jpg" alt="City Image">
+                                        <img src="../static/css/ride.jpg" alt="Night Image">
+                                        <img src="../static/css/ol.jpg" alt="Night Image">
+                                        
+                                    </div>
+                                </div>
+        
+        <!-- Careers Section -->
+<div id="careers" class="careers-section">
+    <h2>Join Our Team</h2>
+    <p>
+        At Ola Bike, we are always looking for talented individuals to join our growing team. <br>
+        If you are passionate about innovation, customer satisfaction, and making a difference,<br>
+        we would love to hear from you.<br>
+        At Ola Bike, we are redefining urban mobility with innovation and sustainability at our <br>
+        core. Joining our team means contributing to a mission that impacts millions while working<br>
+        in a culture that values creativity, collaboration, and inclusivity. We offer diverse career<br>
+        opportunities, from technology and operations to marketing and customer experience, ensuring<br>
+        room for growth and professional development. At Ola Bike, you’ll work alongside passionate <br>
+        individuals, gain access to learning opportunities, and make a meaningful impact on the future<br>
+         of transportation. Together, let’s build smarter, greener cities.
+    </p>
+    <div class="careers-container">
+        <div class="career-card">
+            <h3>Data Analyst</h3>
+            <p>
+                Analyze ride data and forecast trends to improve bike ride availability and pricing strategies.Use forecasts to adjust pricing strategies, ensuring efficient service and customer satisfaction.
+            </p>
+           
+        </div>
+        <div class="career-card">
+            <h3>Marketing Specialist</h3>
+            <p>
+                Help us reach new markets and spread the word about Ola Bike. Join our dynamic marketing team and craft impactful campaigns.
+            </p>
+          
+        </div>
+        <div class="career-card">
+            <h3>Operations Manager</h3>
+            <p>
+                Ensure smooth operations across our bike fleet and help optimize customer satisfaction. Play a vital role in scaling our services.
+            </p>
+    
+        </div>
+    </div>
+</div>
+
+        
+        </p>
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Contact Us</h3>
+                <p>If you have any questions, feel free to reach out to us:</p>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:support@olabike.com">support@olabike.com</a></li>
+                    <li><strong>Phone:</strong> +123 456 7890</li>
+                    <li><strong>Address:</strong> 123 Ola Bike Street, City, Country</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="https://www.Facebook.com">Facebook</a></li>
+                    <li><a href="https://www.Twitter.com">Twitter</a></li>
+                    <li><a href="https://www.instagram.com">Instagram</a></li>
+                    <li><a href="https://www.LinkedIn.com">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ola Bike. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

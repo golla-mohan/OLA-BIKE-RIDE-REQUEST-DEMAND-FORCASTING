@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predict Ride Price</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Fallback color */
+            background-image: url('../static/css/ride.jpg'); /* Path to your background image */
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            /* Use flexbox for centering content */
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            justify-content: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+            transition: filter 0.3s ease-in-out;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: #f0f0f0; /* Fallback color */
+            background-image: url('../static/css/ride.jpg'); /* Path to your background image */
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: filter 0.3s ease-in-out;
+        }
+        .background.blur {
+            filter: blur(5px);
+        }
+        h1 {
+            color: black;
+            text-align: center;
+            font-weight: bold;
+            font-size: 50px;
+        }
+        form {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: black;
+            color: whitesmoke;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px green;
+            position: relative;
+            z-index: 1;
+        }
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .form-group input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    color: white;
+    border: none;
+    border-bottom: 1px solid grey;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: black; /* Fixed background color */
+    transition: 0.5s;
+}
+
+        .form-group input[type="date"]::-webkit-calendar-picker-indicator,
+        .form-group input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+        
+.form-group input:focus {
+    outline: none;
+    border-bottom: 2px solid green;
+}
+        .form-group label {
+            position: absolute;
+            top: 12px;
+            left: 10px;
+            color: white;
+            pointer-events: none;
+            transition: 0.3s ease all;
+        }
+        .form-group input:focus ~ label,
+        .form-group input:not(:placeholder-shown) ~ label {
+            top: -10px;
+            left: 10px;
+            font-size: 12px;
+            color: white;
+        }
+        button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            text-align: center;
+            font-size: 25px;
+            color: black;
+            margin-top: 5px;
+            font-weight: bold;
+            display: inline-block; /* This makes the <p> tag take only as much width as its content */
+            padding-bottom: 5px; /* Space between text and underline */
+            border-bottom: 2px solid black; /* Underline only under the text */
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <h1>Predict Ola Ride Price</h1>
+    <form action="{{ url_for('predict_ride') }}" method="post">
+        <!-- Date input -->
+        <div class="form-group">
+            <input type="date" id="date" name="date" placeholder=" " required>
+            <label for="date">Date</label>
+        </div>
+
+        <!-- Time input -->
+        <div class="form-group">
+            <input type="time" id="time" name="time" placeholder=" " required>
+            <label for="time">Time</label>
+        </div>
+
+        <!-- Kilometers input -->
+        <div class="form-group">
+            <input type="text" id="kilometers" name="kilometers" placeholder=" " required>
+            <label for="kilometers">Kilometers</label>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit">Predict</button>
+    </form>
+
+    <!-- Prediction text -->
+    <p>{{ prediction_text }}</p>
+
+    <script>
+        // Get all input elements
+        const inputs = document.querySelectorAll('input');
+        const background = document.querySelector('.background');
+        const form = document.querySelector('form');
+        const predictionText = document.querySelector('p');
+
+        // Add event listeners for focus and blur
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                background.classList.add('blur');
+            });
+            input.addEventListener('blur', () => {
+                // The blur will not be removed until the user clicks outside
+                // and prediction text is displayed
+                if (!predictionText.innerText) {
+                    background.classList.remove('blur');
+                }
+            });
+        });
+
+        // Event listener for click outside of form to remove blur
+        document.addEventListener('click', function(event) {
+            if (!form.contains(event.target) && predictionText.innerText) {
+                background.classList.remove('blur');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predict Weekly Ola Bike Rides Demand</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Fallback color */
+            background-image: url('../static/css/ol.jpg'); /* Path to your background image */
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+        }
+        body.blur-background {
+            backdrop-filter: blur(8px); /* Blur effect */
+        }
+        h1 {
+            color:black;
+            text-align: center;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px black;
+            position: relative;
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .form-group input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            color:black;
+            border: none;
+            border-bottom: 1px solid grey;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background-color: transparent;
+            transition: 0.5s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-bottom: 2px solid green;
+        }
+        .form-group label {
+            position: absolute;
+            top: 12px;
+            left: 10px;
+            color: black;
+            pointer-events: none;
+            transition: 0.3s ease all;
+        }
+        .form-group input:focus ~ label,
+        .form-group input:not(:placeholder-shown) ~ label {
+            top: -10px;
+            left: 10px;
+            font-size: 12px;
+            color:white;
+        }
+        button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            background-color: lightgreen;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Predict Weekly Ola Bike Rides Demand</h1>
+    <form action="{{ url_for('predict') }}" method="post">
+        <div class="form-group">
+            <input type="text" name="weekly_income" placeholder=" " required>
+            <label for="weekly_income">Money Earned per Week</label>
+        </div>
+        <div class="form-group">
+            <input type="text" name="parking_charges" placeholder=" " required>
+            <label for="parking_charges">Parking Charges per Week</label>
+        </div>
+        <div class="form-group">
+            <input type="text" name="daily_expenses" placeholder=" " required>
+            <label for="daily_expenses">Daily Expenses</label>
+        </div>
+        <button type="submit">Predict</button>
+    </form>
+    <p> 
+        {% if prediction_text %}
+            <h2 style="color:white;">{{ prediction_text }}</h2>
+        {% endif %}
+    </p>
+    <script>
+        // Add event listeners to form inputs
+        const formInputs = document.querySelectorAll('.form-group input');
+        const body = document.body;
+
+        formInputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                body.classList.add('blur-background'); // Add blur class on focus
+            });
+
+            input.addEventListener('blur', () => {
+                body.classList.remove('blur-background'); // Remove blur class on blur
+            });
+        });
+    </script>
+</body>
+</html>
